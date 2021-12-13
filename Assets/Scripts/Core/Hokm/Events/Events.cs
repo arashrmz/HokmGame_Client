@@ -10,7 +10,7 @@ namespace HokmGame.Core.Hokm.Events
         public TrickOutcome Outcome { get; set; }
     }
 
-    public class BanterUttered : EventArgs
+    public class BanterUtteredEventArgs : EventArgs
     {
         public IPlayerInfo PlayerInfo { get; set; }
         public string Banter { get; set; }
