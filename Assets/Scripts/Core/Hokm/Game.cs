@@ -36,7 +36,7 @@ namespace HokmGame.Core.Hokm
         public TrickInfo CurrentTrick { get; set; }
 
         public Game(int gameNumber, MatchScore matchScore, Team team1, Team team2, PlayerPosition trumpCaller,
-        Func<IEnumerable<Card>, IEnumerable<Card>> shuffler)
+        Func<IEnumerable<Card>, IEnumerable<Card>> shuffler = null)
         {
             _matchScore = matchScore;
             _shuffler = shuffler;
