@@ -1,0 +1,16 @@
+{
+    "name": "Game",
+    "rootNamespace": "HokmGame.Game",
+    "references": [
+        "GUID:baf822cdb98db644e8090de4e668bc8d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
