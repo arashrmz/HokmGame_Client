@@ -16,7 +16,7 @@ namespace HokmGame.Core.Hokm.Score
         public MatchScore(int bestOf = 7)
         {
             BestOf = bestOf;
-            if (bestOf % 2 != 0)
+            if (bestOf % 2 == 0)
             {
                 throw new ArgumentException("Best of must be even");
             }
