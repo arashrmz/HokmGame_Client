@@ -43,7 +43,9 @@ namespace HokmGame.Core.Hokm
             }
         }
 
-        public async Task<Game> RunGameAsync(CancellationToken cancellationToken, TimeSpan? inBetweenDelay = null)
+        public async Task<Game> RunGameAsync(CancellationToken cancellationToken,
+         TimeSpan? inBetweenTrickDelay = null,
+         TimeSpan? inBetweenCardDelay = null)
         {
             if (Score.IsCompleted)
                 throw new InvalidOperationException("Match is finished, game cannot start");
@@ -70,9 +72,9 @@ namespace HokmGame.Core.Hokm
             {
                 while (!g.Score.IsGameOver)
                 {
-                    await g.PlayTrickAsync(cancellationToken, inBetweenDelay);
-                    if (inBetweenDelay.HasValue)
-                        await Task.Delay(inBetweenDelay.Value, cancellationToken);
+                    await g.PlayTrickAsync(cancellationToken, inBetweenCardDelay);
+                    if (inBetweenTrickDelay.HasValue)
+                        await Task.Delay(inBetweenTrickDelay.Value, cancellationToken);
                 }
 
                 foreach (var kv in g.Score.TricksWon)
@@ -94,7 +96,7 @@ namespace HokmGame.Core.Hokm
 
             _currentGame = null;
 
-            RaiseEvent(EventType.GameFinished, null);
+            RaiseEvent(EventType.GameFinished, new GameFinishedEventArgs { Game = g });
 
             return g;
         }
