@@ -2,7 +2,10 @@
     "name": "Game",
     "rootNamespace": "HokmGame.Game",
     "references": [
-        "GUID:baf822cdb98db644e8090de4e668bc8d"
+        "GUID:baf822cdb98db644e8090de4e668bc8d",
+        "GUID:f64f653bf6bfe5448a87b11b078a96a8",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:b85a9b696dea92b4f9d0efe8b3f0e5b7"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
