@@ -18,7 +18,7 @@ namespace HokmGame.Core.CardGame
             for (int i = 0; i < 4; i++)
             {
                 var suit = (Suit)i;
-                for (int j = 0; j < 13; j++)
+                for (int j = 1; j < 14; j++)
                 {
                     var rank = (Rank)j;
                     cards.Push(new Card(suit, rank));
