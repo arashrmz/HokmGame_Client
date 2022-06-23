@@ -84,6 +84,8 @@ namespace HokmGame.Game
                 await Task.Delay(1);
             }
             var selectedCard = playerManager.selectedCard;
+            Cards.Remove(selectedCard);
+            Debug.LogWarning("You played " + selectedCard + " , " + Cards.Count + " cards left");
             return selectedCard;
         }
 
