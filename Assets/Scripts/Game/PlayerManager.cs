@@ -72,19 +72,13 @@ namespace HokmGame.Game
         internal bool CanPlayCard(Card card, IEnumerable<Card> playedByOthers, Suit trumpSuit)
         {
             var local = playedByOthers.ToArray();
-
             //we are the first player of the round
             if (local.Length == 0)
                 return true;
 
-            //player has atleast one card of the same suit, but has not chosen it
-            var sameSuit = realPlayer.Cards.FirstOrDefault(x => x.Suit == local[0].Suit);
-            if (sameSuit != null && card.Suit != sameSuit.Suit)
+            var playedSuit = local[0].Suit;
+            if (playedSuit != card.Suit && realPlayer.Cards.Any(c => c.Suit == playedSuit))
                 return false;
-
-            //playing a trump card
-            if (card.Suit == trumpSuit)
-                return true;
 
             return true;
         }
