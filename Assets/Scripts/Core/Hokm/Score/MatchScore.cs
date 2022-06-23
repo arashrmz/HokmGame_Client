@@ -7,7 +7,10 @@ namespace HokmGame.Core.Hokm.Score
 {
     public class MatchScore
     {
+        //minimum number of tricks to win a game
         private int _limit;
+
+        //total number of tricks
         public int BestOf { get; set; }
         public Dictionary<PlayerPosition, int> TricksWon { get; }
         public int Team1Points { get; private set; }

@@ -25,6 +25,7 @@ namespace HokmGame.Core.Hokm
             Team1 = team1;
             Team2 = team2;
             Score = new MatchScore(bestOf);
+            //determine trump caller randomly
             CurrentTrumpCaller = PlayerPositions.All.OrderBy(x => Guid.NewGuid()).First();
             _players = new Dictionary<PlayerPosition, IPlayer>();
             _currentGame = null;
@@ -39,6 +40,7 @@ namespace HokmGame.Core.Hokm
             var infos = _players.ToDictionary(x => x.Key, y => y.Value.ToPlayerInfo());
             foreach (var kv in _players)
             {
+                //inform players match is starting
                 await kv.Value.NewMatchAsync(infos, kv.Key);
             }
         }

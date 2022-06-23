@@ -16,6 +16,7 @@ namespace HokmGame.Core.Hokm.Events
         public string Banter { get; set; }
     }
 
+
     public class CardPlayedEventArgs : EventArgs
     {
         public IEnumerable<Card> Cards { get; set; }
