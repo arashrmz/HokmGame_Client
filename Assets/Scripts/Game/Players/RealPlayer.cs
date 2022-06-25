@@ -73,7 +73,7 @@ namespace HokmGame.Game
             return Task.CompletedTask;
         }
 
-        public async Task<Card> PlayAsync(int trickNumber, IEnumerable<Card> playedByOthers, Suit trumpSuit)
+        public async Task<Card> PlayAsync(int trickNumber, IEnumerable<Card> playedByOthers, Suit trumpSuit, IEnumerable<Card> cardsPlayedSoFar)
         {
             Debug.LogWarning("Your turn");
             playerManager.ResetSelectedCard();
@@ -85,7 +85,6 @@ namespace HokmGame.Game
             }
             var selectedCard = playerManager.selectedCard;
             Cards.Remove(selectedCard);
-            Debug.LogWarning("You played " + selectedCard + " , " + Cards.Count + " cards left");
             return selectedCard;
         }
 
