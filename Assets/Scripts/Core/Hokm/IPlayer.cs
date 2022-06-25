@@ -10,7 +10,7 @@ namespace HokmGame.Core.Hokm
     {
         Task ReceiveHandAsync(IEnumerable<Card> cards);
         Task<Suit> CallTrumpSuitAsync();
-        Task<Card> PlayAsync(int trickNumber, IEnumerable<Card> playedByOthers, Suit trumpSuit);
+        Task<Card> PlayAsync(int trickNumber, IEnumerable<Card> playedByOthers, Suit trumpSuit, IEnumerable<Card> cardsPlayedSoFar);
         Task<string> InformTrickOutcomeAsync(TrickOutcome outcome);
         Task<string> BanterAsync();
         Task NewGameAsync(MatchScore currentMatchScore, PlayerPosition caller);
