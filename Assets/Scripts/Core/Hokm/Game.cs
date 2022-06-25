@@ -20,6 +20,7 @@ namespace HokmGame.Core.Hokm
         private Dictionary<PlayerPosition, PlayerShadow> _playerShadows; //init in ctor
         private readonly MatchScore _matchScore;
         private Func<IEnumerable<Card>, IEnumerable<Card>> _shuffler;
+        private List<Card> _cardsPlayedSoFar;   //all cards that have been played
 
         //events
         public event EventHandler<TrickFinishedEventArgs> TrickFinished;
@@ -45,6 +46,7 @@ namespace HokmGame.Core.Hokm
             TrumpCaller = trumpCaller;
             _currentTrickStarter = trumpCaller;
             GameNumber = gameNumber;
+            _cardsPlayedSoFar = new List<Card>();
 
             //init variables
             _playerShadows = PlayerPositions.All.ToDictionary(p => p, s => new PlayerShadow());
@@ -167,7 +169,7 @@ namespace HokmGame.Core.Hokm
                 if (cancellationToken.IsCancellationRequested)
                     return null;
                 var p = GetPlayer(position);
-                var card = await p.PlayAsync(_currentTrickNumber, cardsPlayed, _trumpSuit);
+                var card = await p.PlayAsync(_currentTrickNumber, cardsPlayed, _trumpSuit, _cardsPlayedSoFar);
                 var result = _playerShadows[position].ValidateAndPlay(card, cardsPlayed.Count == 0 ? card.Suit : cardsPlayed[0].Suit);
 
                 if (!result.IsValid)
@@ -177,6 +179,7 @@ namespace HokmGame.Core.Hokm
                 }
 
                 cardsPlayed.Add(card);
+                _cardsPlayedSoFar.Add(card);
                 CurrentTrick.CardsPlayed = cardsPlayed.ToArray();
                 CurrentTrick.CurrentWinningPosition = playingOrder[DecideWinnerCard(cardsPlayed, _trumpSuit)];
 
