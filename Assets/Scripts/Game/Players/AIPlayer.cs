@@ -177,7 +177,7 @@ namespace HokmGame.Game
                 var playableCards = cardsInHand.Where(x => x.Suit == cardsInTrick[0].Suit);
                 if (playableCards.Count() <= 0)
                 {
-                    playableCards = cardsInHand.Take(playableCards.Count());
+                    playableCards = cardsInHand.Take(cardsInHand.Count());
                 }
 
                 //to keep score of cards in hand
@@ -203,9 +203,9 @@ namespace HokmGame.Game
                                 {
                                     playableCardsScore[playableCard]++;
                                 }
+                                cardsInTrick.RemoveAt(cardsInTrick.Count - 1);
+                                cardsInTrick.RemoveAt(cardsInTrick.Count - 1);
                             }
-                            cardsInTrick.RemoveAt(cardsInTrick.Count - 1);
-                            cardsInTrick.RemoveAt(cardsInTrick.Count - 1);
                         }
                     }
                     else
@@ -220,10 +220,10 @@ namespace HokmGame.Game
                                 {
                                     playableCardsScore[playableCard]++;
                                 }
+                                cardsInTrick.RemoveAt(cardsInTrick.Count - 1);
+                                cardsInTrick.RemoveAt(cardsInTrick.Count - 1);
+                                cardsInTrick.RemoveAt(cardsInTrick.Count - 1);
                             }
-                        cardsInTrick.RemoveAt(cardsInTrick.Count - 1);
-                        cardsInTrick.RemoveAt(cardsInTrick.Count - 1);
-                        cardsInTrick.RemoveAt(cardsInTrick.Count - 1);
                     }
                 }
                 var card = playableCardsScore.OrderBy(x => x.Key.Rank).OrderByDescending(x => x.Value).First().Key;
