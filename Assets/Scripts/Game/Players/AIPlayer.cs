@@ -85,12 +85,7 @@ namespace HokmGame.Game
             var cardsInHand = Cards.ToList();
             //cards that are out(been played before in current game)
             var cardsOut = cardsPlayedSoFar.ToList();
-            var test = cardsInHand.OrderByDescending(x => x.Rank).OrderBy(x => x.Rank == Rank.Ace ? 0 : 1);
-            Debug.Log(MyPosition + "*********");
-            foreach (var t in test)
-            {
-                Debug.Log(t.ToString());
-            }
+
             //we are the first player of the round
             if (cardsInTrick.Count == 0)
             {
