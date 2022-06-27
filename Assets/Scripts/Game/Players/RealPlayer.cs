@@ -143,5 +143,10 @@ namespace HokmGame.Game
                 cardManager.SpawnDeck(Cards, MyPosition);
             return Task.CompletedTask;
         }
+
+        public void PlayCard(Card card)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
