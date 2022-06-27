@@ -1,5 +1,6 @@
 namespace HokmGame.Core.CardGame
 {
+    [System.Serializable]
     public enum Rank
     {
         Ace = 1,

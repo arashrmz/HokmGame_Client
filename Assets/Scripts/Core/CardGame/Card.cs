@@ -1,5 +1,6 @@
 namespace HokmGame.Core.CardGame
 {
+    [System.Serializable]
     public class Card
     {
         public Card(Suit suit, Rank rank)
