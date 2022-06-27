@@ -42,7 +42,7 @@ namespace HokmGame.Game
                 currentMatch.MatchEvent += OnMatchEvent;
                 while (!currentMatch.Score.IsCompleted)
                 {
-                    await currentMatch.RunGameAsync(CancellationToken.None,
+                    await currentMatch.CreateAndRunGameAsync(CancellationToken.None,
                         TimeSpan.FromMilliseconds(timeBetweenGame),
                         TimeSpan.FromMilliseconds(timeBetweenMove));
                 }
