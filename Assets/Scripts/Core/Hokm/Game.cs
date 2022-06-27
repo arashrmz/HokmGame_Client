@@ -53,6 +53,42 @@ namespace HokmGame.Core.Hokm
             Score = new GameScore();
         }
 
+        //to be used for networked game
+        public Game(int gameNumber, MatchScore matchScore, Team team1, Team team2, PlayerPosition trumpCaller,
+        CardsDealtEventArgs cardsDealtEventArgs,
+Func<IEnumerable<Card>, IEnumerable<Card>> shuffler = null)
+        {
+            _matchScore = matchScore;
+            _shuffler = shuffler;
+            Team1 = team1;
+            Team2 = team2;
+            TrumpCaller = trumpCaller;
+            _currentTrickStarter = trumpCaller;
+            GameNumber = gameNumber;
+            _cardsPlayedSoFar = new List<Card>();
+
+            //init variables
+            _playerShadows = PlayerPositions.All.ToDictionary(p => p, s => new PlayerShadow());
+            Score = new GameScore();
+
+            foreach (var kv in cardsDealtEventArgs.Hands)
+            {
+                var position = kv.Key;
+                var cards = kv.Value;
+                var player = GetPlayer(position);
+                _playerShadows[position].ReceiveHand(cards);
+                player.ReceiveHandAsync(cards);
+
+            }
+
+            OnCardsDealt(new CardsDealtEventArgs()
+            {
+                TrumpSuit = _trumpSuit,
+                Hands = _playerShadows.ToDictionary(x => x.Key, kv => kv.Value._handCards.Select(y => y))
+            });
+
+        }
+
         internal static List<PlayerPosition> BuildPlayingOrder(PlayerPosition startingPosition)
         {
             return Enumerable.Range(0, 4).Select(x => (x + (int)startingPosition) % 4).Cast<PlayerPosition>().ToList();
