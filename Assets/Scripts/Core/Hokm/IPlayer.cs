@@ -17,6 +17,8 @@ namespace HokmGame.Core.Hokm
         Task<string> GameFinished(GameOutcome outcome, GameScore score);
         Task NewMatchAsync(IDictionary<PlayerPosition, IPlayerInfo> playerInfos, PlayerPosition yourPosition);
         Task MatchFinished(MatchScore score);
+
+        void PlayCard(Card card);
     }
 
     public static class IPlayerExtensions
