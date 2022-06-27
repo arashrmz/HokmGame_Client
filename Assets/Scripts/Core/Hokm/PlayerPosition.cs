@@ -1,5 +1,6 @@
 namespace HokmGame.Core.Hokm
 {
+    [System.Serializable]
     public enum PlayerPosition
     {
         Team1Player1,
